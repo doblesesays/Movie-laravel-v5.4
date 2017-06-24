@@ -8,6 +8,8 @@ before_script:
   - mysql -e 'create database forge_test;'
   - composer self-update
   - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan config:clear
 
 script:
   - vendor/bin/phpunit tests
