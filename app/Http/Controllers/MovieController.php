@@ -1,8 +1,8 @@
 <?php
 
-namespace Cinema\Http\Controllers;
+namespace Movie\Http\Controllers;
 
-use Cinema\Movie;
+use Movie\Movie;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -41,7 +41,7 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Cinema\Movie  $movie
+     * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
     public function show(Movie $movie)
@@ -52,7 +52,7 @@ class MovieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Cinema\Movie  $movie
+     * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
     public function edit(Movie $movie)
@@ -64,7 +64,7 @@ class MovieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Cinema\Movie  $movie
+     * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Movie $movie)
@@ -75,7 +75,7 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Cinema\Movie  $movie
+     * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
     public function destroy(Movie $movie)

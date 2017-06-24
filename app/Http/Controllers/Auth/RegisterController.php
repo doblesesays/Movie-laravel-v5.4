@@ -1,9 +1,9 @@
 <?php
 
-namespace Cinema\Http\Controllers\Auth;
+namespace Movie\Http\Controllers\Auth;
 
-use Cinema\User;
-use Cinema\Http\Controllers\Controller;
+use Movie\User;
+use Movie\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 

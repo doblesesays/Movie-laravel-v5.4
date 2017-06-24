@@ -1,6 +1,6 @@
 <?php
 
-namespace Cinema\Providers;
+namespace Movie\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Cinema\Model' => 'Cinema\Policies\ModelPolicy',
+        'Movie\Model' => 'Movie\Policies\ModelPolicy',
     ];
 
     /**

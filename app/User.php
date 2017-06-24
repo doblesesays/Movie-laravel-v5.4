@@ -1,6 +1,6 @@
 <?php
 
-namespace Cinema;
+namespace Movie;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

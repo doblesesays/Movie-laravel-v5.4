@@ -1,8 +1,8 @@
 <?php
 
-namespace Cinema\Http\Controllers\Auth;
+namespace Movie\Http\Controllers\Auth;
 
-use Cinema\Http\Controllers\Controller;
+use Movie\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
