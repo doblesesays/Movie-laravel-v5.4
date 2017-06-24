@@ -14,7 +14,15 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('name');
+            $table->string('cast');
+            $table->string('direction');
+
+            $table->integer('genre_id')->unsigned();
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
