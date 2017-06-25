@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/doblesesays/Movie-laravel-v5.4.svg?branch=master)](https://travis-ci.org/doblesesays/Movie-laravel-v5.4)
+[![Build Status](https://travis-ci.org/doblesesays/Movie-laravel-v5.4.svg?branch=develop)](https://travis-ci.org/doblesesays/Movie-laravel-v5.4)
 
 ## Proyecto - Web administradora de peliculas
 
