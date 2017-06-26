@@ -14,13 +14,8 @@
 Route::get('/', 'FrontController@index');
 Route::get('contacto', 'FrontController@contacto');
 Route::get('reviews', 'FrontController@reviews');
+Route::get('admin', 'FrontController@admin');
 
-Route::get('/prueba', function () {
-    return 'welcome';
-});
-
-Route::get('nombre/{nombre}', function ($nombre) {
-    return 'mi nombre es: '.$nombre;
-});
+Route::resource('usuario', 'UsuarioController');
 
 Route::resource('/movie', 'MovieController');
