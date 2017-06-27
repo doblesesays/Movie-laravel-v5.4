@@ -34,7 +34,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Movie\User::create([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'password'=>bcrypt($request['password'])
+        ]);
+
+        return ['arreglo' => 'store'];
     }
 
     /**
