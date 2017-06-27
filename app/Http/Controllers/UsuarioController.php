@@ -3,6 +3,9 @@
 namespace Movie\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Movie\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +16,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $users = \Movie\User::All();
+        $users = User::All();
         return view('usuario.index', compact('users'));
     }
 
@@ -35,10 +38,10 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        \Movie\User::create([
+        User::create([
             'name'=>$request['name'],
             'email'=>$request['email'],
-            'password'=>bcrypt($request['password'])
+            'password'=>$request['password']
         ]);
 
         return redirect('/usuario')->with('message', 'store');
@@ -63,7 +66,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('usuario.edit', compact('user')); 
     }
 
     /**
@@ -75,7 +79,12 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+
+        Session::flash('message', 'Usuario editado.');
+        return redirect('/usuario');
     }
 
     /**
