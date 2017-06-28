@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($valor) {
         if (!empty($valor)) {
-            $thus->attributes['password'] = bcrypt($valor);
+            $this->attributes['password'] = bcrypt($valor);
         }
     }
 }

@@ -16,9 +16,12 @@ class UsuarioTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->json('POST', '/usuario', ['name'=>'gene', 'email'=>'gene@gmail.com', 'password'=>'somepass']);
+    	$email = $this->generate_email();
+        $response = $this->json('POST', '/usuario', ['name'=>'gene', 'email'=>$email, 'password'=>'somepass']);
         $response->assertRedirect('/usuario');
         		 // ->assertStatus(200)
+
+        // $user = User::find($this->generate_email());
     }
 
 	function generate_email() {
