@@ -17,26 +17,22 @@ class UsuarioTest extends TestCase
      */
     public function testExample()
     {
-    	$user = factory(User::class)->make();
-    	$this->createUserTest($user);
-    	// $this->updateUserTest($user);
+    	$this->createUserTest();
+    	$this->updateUserTest();
     }
 
-    function createUserTest($user) {
-        $response = $this->json('POST', '/usuario', ['name'=>$user->name, 'email'=>$user->email, 'password'=>$user->password]);
+    function createUserTest() {
+    	$user = factory(User::class)->make();
+        $response = $this->post('/usuario', ['name'=>$user->name, 'email'=>$user->email, 'password'=>$user->password]);
         $response->assertRedirect('/usuario');
         		 // ->assertStatus(200)
     }
 
-    function updateUserTest($user) {
-    	// $email = $email.'update';
-        $user = User::find($user->id);
+    function updateUserTest() {
+    	$user = factory(User::class)->create();
+    	// $user->name = 'Something else';
 
-  //   	$user = factory(User::class)->make([
-		//     'name' => 'GeneTest',
-		// ]);
-
-        $response = $this->put('/usuario', (array)['name'=>'genetest', 'email'=>$user->email, 'password'=>$user->password], array('id' => $user->id));
+        $response = $this->put('/usuario', (array)$user, array('id' => $user->id));
         $response->assertRedirect('/usuario');
     }
 

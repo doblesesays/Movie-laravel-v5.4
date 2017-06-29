@@ -2,6 +2,8 @@
 
 namespace Movie\Http\Controllers;
 
+use Movie\Http\Requests\UserCreateRequest;
+use Movie\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use Movie\User;
 use Illuminate\Support\Facades\Session;
@@ -36,7 +38,7 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
         User::create([
             'name'=>$request['name'],
@@ -78,7 +80,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
         $user->fill($request->all());
