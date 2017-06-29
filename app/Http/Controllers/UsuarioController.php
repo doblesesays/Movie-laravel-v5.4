@@ -44,7 +44,8 @@ class UsuarioController extends Controller
             'password'=>$request['password']
         ]);
 
-        return redirect('/usuario')->with('message', 'store');
+        Session::flash('message', 'Usuario Creado.');
+        return redirect('/usuario');
     }
 
     /**
@@ -95,6 +96,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        Session::flash('message', 'Usuario eliminado.');
+        return redirect('/usuario');
     }
 }

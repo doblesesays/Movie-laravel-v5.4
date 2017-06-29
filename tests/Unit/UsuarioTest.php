@@ -2,13 +2,14 @@
 
 namespace Tests\Unit;
 
+use Movie\User;
 use Tests\TestCase;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UsuarioTest extends TestCase
-{ 
-
+{
     /**
      * A basic test example.
      *
@@ -16,12 +17,27 @@ class UsuarioTest extends TestCase
      */
     public function testExample()
     {
-    	$email = $this->generate_email();
-        $response = $this->json('POST', '/usuario', ['name'=>'gene', 'email'=>$email, 'password'=>'somepass']);
+    	$user = factory(User::class)->make();
+    	$this->createUserTest($user);
+    	// $this->updateUserTest($user);
+    }
+
+    function createUserTest($user) {
+        $response = $this->json('POST', '/usuario', ['name'=>$user->name, 'email'=>$user->email, 'password'=>$user->password]);
         $response->assertRedirect('/usuario');
         		 // ->assertStatus(200)
+    }
 
-        // $user = User::find($this->generate_email());
+    function updateUserTest($user) {
+    	// $email = $email.'update';
+        $user = User::find($user->id);
+
+  //   	$user = factory(User::class)->make([
+		//     'name' => 'GeneTest',
+		// ]);
+
+        $response = $this->put('/usuario', (array)['name'=>'genetest', 'email'=>$user->email, 'password'=>$user->password], array('id' => $user->id));
+        $response->assertRedirect('/usuario');
     }
 
 	function generate_email() {
