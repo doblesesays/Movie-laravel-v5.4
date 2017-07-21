@@ -22,3 +22,6 @@ Route::resource('usuario', 'UsuarioController');
 // });
 
 Route::resource('/movie', 'MovieController');
+
+Route::resource('log', 'LogController');
+Route::get('logout', 'LogController@logout');
