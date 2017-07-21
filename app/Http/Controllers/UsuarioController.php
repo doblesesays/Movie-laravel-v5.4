@@ -7,10 +7,12 @@ use Movie\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use Movie\User;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Routing\Route;
+use Movie\Http\Middleware;
 
 class UsuarioController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -41,11 +43,13 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        User::create([
-            'name'=>$request['name'],
-            'email'=>$request['email'],
-            'password'=>$request['password']
-        ]);
+        // User::create([
+        //     'name'=>$request['name'],
+        //     'email'=>$request['email'],
+        //     'password'=>$request['password']
+        // ]);
+
+        User::create($request->all());
 
         Session::flash('message', 'Usuario Creado.');
         return redirect('/usuario');
@@ -72,8 +76,11 @@ class UsuarioController extends Controller
     {
         $user = User::find($id);
         return view('usuario.edit', compact('user')); 
+        // return view('usuario.edit', [
+        //     'user'=>$user
+        // ]); 
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
