@@ -19,6 +19,7 @@ Route::get('admin', 'FrontController@admin');
 Route::resource('usuario', 'UsuarioController');
 
 Route::resource('genero', 'GeneroController');
+Route::get('generos', 'GeneroController@listing');
 
 
 Route::resource('log', 'LogController');
