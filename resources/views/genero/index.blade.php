@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 	@section('content')
+	@include('genero.modal')
+		<div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+			<strong> Genero Actualizado Correctamente.</strong>
+		</div>
+		<div id="msj-deleted" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+	  		<strong> Genero Eliminado Correctamente.</strong>
+		</div>
 		<table class="table">
 			<thead>
 				<th>Nombre</th>

@@ -71,7 +71,10 @@ class GeneroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+        return response()->json(
+            $genre->toArray()
+        );
     }
 
     /**
@@ -83,7 +86,13 @@ class GeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $genre = Genre::find($id);
+        $genre->fill($request->all());
+        $genre->save();
+
+        return response()->json([
+            "mensaje"=>"Listo update"
+        ]);
     }
 
     /**
@@ -94,6 +103,11 @@ class GeneroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $genre = Genre::find($id);
+        $genre->delete();
+
+        return response()->json([
+            'mensaje'=>'Genre eliminado'
+        ]);
     }
 }
