@@ -4,6 +4,7 @@ namespace Movie\Http\Controllers;
 use Movie\Genre;
 
 use Illuminate\Http\Request;
+use Movie\Http\Requests\GenreRequest;
 
 class GeneroController extends Controller
 {
@@ -42,7 +43,7 @@ class GeneroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GenreRequest $request)
     {
         if($request->ajax()){
             Genre::create($request->all());

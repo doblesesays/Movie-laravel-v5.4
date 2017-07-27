@@ -10,7 +10,13 @@ $("#registro").click(function() {
 		dataType: 'json',
 		data: {genre: dato},
 		success: function(){
+			$("#msj-error").fadeOut();
 			$("#msj-success").fadeIn();
+		},
+		error: function(msj) {
+			$("#msj-success").fadeOut();
+			$("#msj").html(msj.responseJSON.genre);
+			$("#msj-error").fadeIn();
 		}
 	});
 })
