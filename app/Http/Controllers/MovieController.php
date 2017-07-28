@@ -3,6 +3,7 @@
 namespace Movie\Http\Controllers;
 
 use Movie\Movie;
+use Movie\Genre;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -24,7 +25,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::pluck('genre', 'id');
+        return view('pelicula.create', compact('genres'));
     }
 
     /**
@@ -35,7 +37,8 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Movie::create($request->all());
+        return "Listo";
     }
 
     /**
