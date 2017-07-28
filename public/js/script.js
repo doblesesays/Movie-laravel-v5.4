@@ -3,6 +3,9 @@ $("#registro").click(function() {
 	var route = "http://localhost:8000/genero";
 	var token = $("#token").val();
 
+	$("#msj-error").fadeOut();
+	$("#msj-success").fadeOut();
+
 	$.ajax({
 		url: route,
 		headers: {'X-CSRF-TOKEN': token},
@@ -10,11 +13,9 @@ $("#registro").click(function() {
 		dataType: 'json',
 		data: {genre: dato},
 		success: function(){
-			$("#msj-error").fadeOut();
 			$("#msj-success").fadeIn();
 		},
 		error: function(msj) {
-			$("#msj-success").fadeOut();
 			$("#msj").html(msj.responseJSON.genre);
 			$("#msj-error").fadeIn();
 		}

@@ -6,6 +6,7 @@ function Cargar() {
 	var tablaDatos = $('#datos');
 	var route = 'http://localhost:8000/generos';
 
+
 	$("#datos").empty();
 	$.get(route, function(res){
 		$(res).each(function(key, value){

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 	@include('alerts.success')
 	@section('content')
+	<div class="users">
 		<table class="table">
 			<thead>
 				<th>Nombre</th>
@@ -18,4 +19,9 @@
 			@endforeach
 		</table>
 		{!! $users->render() !!}
+	</div>
+	@endsection
+
+	@section('scripts')
+		{!! Html::script('js/script3.js') !!}
 	@endsection

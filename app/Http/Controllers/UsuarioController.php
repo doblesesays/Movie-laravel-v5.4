@@ -22,10 +22,13 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $users = User::onlyTrashed()->paginate(10);
         $users = User::paginate(10);
+        if($request->ajax()){
+            return response()->json(view('usuario.users', compact('users'))->render());
+        }
         return view('usuario.index', compact('users'));
     }
 
