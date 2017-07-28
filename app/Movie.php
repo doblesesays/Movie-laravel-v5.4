@@ -5,6 +5,7 @@ namespace Movie;
 use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
+use DB;
 
 class Movie extends Model
 {
@@ -17,5 +18,12 @@ class Movie extends Model
     	$name = Carbon::now()->second.$path->getClientOriginalName();
 
     	\Storage::disk('local')->put($name, \File::get($path));
+    }
+
+    public static function Movies() {
+    	return DB::table('movies')
+    		->join('genres', 'genres.id', '=', 'movies.genre_id')
+    		->select('movies.*', 'genres.genre')
+    		->get();
     }
 }
