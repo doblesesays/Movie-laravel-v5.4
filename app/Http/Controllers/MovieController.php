@@ -5,6 +5,7 @@ namespace Movie\Http\Controllers;
 use Movie\Movie;
 use Movie\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MovieController extends Controller
 {
@@ -39,7 +40,8 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         Movie::create($request->all());
-        return "Listo";
+        Session::flash('message', 'PElicula creada');
+        return redirect('/pelicula');
     }
 
     /**
@@ -59,9 +61,11 @@ class MovieController extends Controller
      * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit($id)
     {
-        //
+        $movie = Movie::find($id);
+        $genres = Genre::pluck('genre', 'id');
+        return view('pelicula.edit', ['movie'=>$movie, 'genres'=>$genres]);
     }
 
     /**
@@ -71,9 +75,18 @@ class MovieController extends Controller
      * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, $id)
     {
-        //
+        $movie = Movie::find($id);
+
+        if ($request->hasFile('path')) {
+            \Storage::delete($movie->path);
+        }
+
+        $movie->fill($request->all());
+        $movie->save();
+        Session::flash('message', 'PElicula actualizada');
+        return redirect('/pelicula');
     }
 
     /**
@@ -82,8 +95,12 @@ class MovieController extends Controller
      * @param  \Movie\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy($id)
     {
-        //
+        $movie = Movie::find($id);
+        $movie->delete();
+        \Storage::delete($movie->path);
+        Session::flash('message', 'PElicula eliminada');
+        return redirect('/pelicula');
     }
 }

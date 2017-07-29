@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-	@include('alerts.success')
 	@section('content')
+		@include('alerts.success')
 		<table class="table">
 			<thead>
 				<th>Nombre</th>
@@ -17,7 +17,9 @@
 				<td>
 					<img src="movies/{{ $movie->path }}" alt="" style="width: 120px">
 				</td>
-				<td>Editar</td>
+				<td>
+					{!! link_to_route('pelicula.edit', $title = "Editar", $parameters = $movie->id, $attributes = ['class'=>'btn btn-primary']); !!}
+				</td>
 			</tbody>
 			@endforeach
 		</table>	
